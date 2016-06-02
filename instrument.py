@@ -48,12 +48,13 @@ def instrument(file_name):
 
 
 def main():
-    input_source_file = 'uninstrumented.py'
-    output_source_file = 'instrumented.py'
-    instrumented_code = instrument(input_source_file)
-    with open(output_source_file, 'w') as f:
+    if len(sys.argv) < 2:
+        print('error: missing source file name')
+        sys.exit(1)
+    source_file = sys.argv[1]
+    instrumented_code = instrument(source_file)
+    with open(source_file, 'w') as f:
         f.write(instrumented_code)
-    print(instrumented_code)
 
 
 if __name__=='__main__':
